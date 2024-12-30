@@ -1,30 +1,24 @@
 pipeline {
-   agent none
-   tools{
-//     jdk "myjava"
-        maven "mymaven"
-   }
-    stages {
-        stage('Compile') { //prod
-        agent any
+    agent any
+
+   stages {
+        stage('Build') {
             steps {
-                echo "Compile the code"
-                sh "mvn compile"
-            }
-        }
-         stage('UnitTest') { //test
-         agent any
+                echo "Build"
+            }    
+        
+            }  
+        stage('Test') {
             steps {
-                echo "Test the code"
-                sh "mvn test"
-            }
-        }
-         stage('Package') {//dev
-        agent {label 'linux_slave'}
+                echo "Test"
+            }    
+          }
+
+        stage('Package') {
             steps {
-                echo "Package the code"
-                sh "mvn package"
+                echo "Package" 
+                
             }
-        }
-    }
+          }       
+}
 }
